@@ -1,0 +1,46 @@
+{% if queryset.has_other_pages %}
+<div class="pagination">
+    <ul class="container">
+      {% if queryset.has_previous %}
+          <li><a href="?page={{ queryset.previous_page_number }}" class="btn page-link" data-page=" {{ queryset.previous_page_number }}"> &#10094; Previous </a> </li>
+      {% endif %}
+
+      {% for page in custom_range %}
+          {% if page == all_projects.number %}
+              <li><a href="?page={{ page }}" class="btn page-link btn--sub" data-page="{{page}}">  {{ page }}</a></li>
+          {% else %}
+              <li><a href="?page={{ page }}" class="btn page-link" data-page="{{ page }}"> {{ page }}</a></li>
+          {% endif %}
+      {% endfor %}
+
+      {% if queryset.has_next %}
+          <li><a href="?page={{queryset.next_page_number}}" class="btn page-link"  data-page="{{ queryset.next_page_number }}" > Next &#10095;</a></li>
+      {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+     {% comment %}
+     ზემოთ  ეს პირველი  და ბოლო  if-ები აკეთებენ წინა და შემდეგი გვერდებზე გადასვლას. ანუ ამოწმებს თუ რომელ გვერდზე ვართ
+     და თუ არ ვართ ბოლოზე გვაჩვენებს Next-ს და იგივე Previous-ზე.
+     შემოწმება მარტივია if all_projects.has_previous დაკლიკებისას გადასვლაც ასე all_projects.previous_page_number.
+     &#10094; აი ეს კიდე იტყვასთან ერთად ისარს აჩვენებს.
+
+     შუაში for კიდე ჩვეულებრივ თავის საქმეს აკეთებს. for page in paginator.page_range აქედან paginator გვაქ views.py-ში
+     და .page_range კიდე ჩვეულებრივად pycharm-იც გვთავაზობს და შეგვიძლია ავირჩიოთ.
+
+     for-ის შუაში რო if და else არიან გვჭირდება იმ გვერდის ნომრის გასამუქებლად და გამუქება ხდება ასე:
+     class="btn page-link btn--sub" --------  მუქი ფერი
+     class="btn page-link"   --------------  ღია ფერი
+
+     if all_projects.has_other_pages სულ ზედა გარეთ if აკეთებს ასეთ რამეს რო თუ ყველა პროექტი ეტევა 1 გვერდზე
+     და არ გვჭრიდება შემდეგები, საერთოდ დამალავს გვერდების ნომრებს.
+
+
+      ამ ყველაფერმა რომ იფუნქცინიროს ამ ჰთმლ-ს ვლინკავთ profiles.html-სა და  main.html -ში აი ასე:
+          {% include 'pagination.html'  with queryset=all_projects custom_range=custom_range %}
+
+          ეს ორი ცვლადი კიდე  with queryset  =all_projects custom_range  =custom_range უნდა იღებენ მნიშვნელობებს
+          დინამიურად შესაბამისი აპების views.py-ების index და profiles ფუნქციებიდან.
+
+     {% endcomment %}

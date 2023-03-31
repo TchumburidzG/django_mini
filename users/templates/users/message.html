@@ -1,0 +1,18 @@
+{% include 'base.html' %}
+{% block tani %}
+  <!-- Main Section -->
+  <main class="messagePage my-xl">
+    <div class="content-box">
+      <div class="message">
+        <a class="backButton" href="{% url 'inbox' %}"> <i class="im im-angle-left"> Back</i></a>
+        <h2 class="message__subject">{{ message.subject }}</h2>
+          <a href="{% url 'profile' message.sender.id %}" class="message__author">
+              {{ message.sender }} </a>
+          <p class="message__date">{{ message.created }}</p>
+          <div class="message__body">
+            {{ message.body | linebreaksbr}}
+      </div>
+    </div>
+
+  </main>
+{% endblock tani %}

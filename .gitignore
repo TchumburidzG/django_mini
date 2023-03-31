@@ -1,0 +1,18 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+*.pyc
+*.wpu
+*.wpr
+*.pyo
+*~
+*.log
+*.bak
+*.wpr
+*_temp.py
+__pycache__*
+output*.*
+output_*
+outputfiles*
+imported*
+.idea/
+*.sqlite3
+
