@@ -30,7 +30,7 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # ეს ქვედაც  იგივეა მარა,
 # DEBUG = False
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 # რომ შევცვალეთ აღარ გვაჩვენბდა სურათებს და მაგისთვისააა
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

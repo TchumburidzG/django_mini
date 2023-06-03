@@ -14,7 +14,6 @@ from django.conf import settings
 #post_save.connect(profileUpdated, sender=Profile))
 #@receiver(post_save, sender=Profile)
 def profileUpdated(sender, instance, created, **kwargs):
-    print('jshdsjkhcklnskjcbkx')
     if created:
         user = instance
         profile = Profile.objects.create(
